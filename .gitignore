@@ -25,3 +25,25 @@ replay_pid*
 
 # others
 *Identifier*
+# Build directies #
+###################
+/target/
+*/target
+/build/
+*/build
+# Eclipse specific #
+####################
+.classpath
+.project
+.settings
+.metadata
+.vscode
+# Logs #
+########
+*.log
+# code source #
+###############
+.class
+# Mac#
+#########
+.DS_Store
