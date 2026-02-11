@@ -1,4 +1,4 @@
-package com.eidd;
+package com.eidd.model;
 
 public class Table {
     private Position position;
@@ -14,5 +14,6 @@ public class Table {
     public void setPosition(Position position) {
         this.position = position;
     }
+    
 
 }

@@ -1,4 +1,4 @@
-package com.eidd;
+package com.eidd.model;
 
 public abstract class Utilisateur {
     private String nom;

@@ -1,4 +1,4 @@
-package com.eidd;
+package com.eidd.model;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

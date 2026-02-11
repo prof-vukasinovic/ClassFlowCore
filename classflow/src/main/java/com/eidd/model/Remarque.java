@@ -1,8 +1,8 @@
-package com.eidd;
+package com.eidd.model;
 
 public class Remarque {
     private String intitule;
-    private int id;
+    private long id;
 
     public Remarque(String intitule) {
         this.intitule = intitule;
@@ -22,11 +22,11 @@ public class Remarque {
         this.intitule = intitule;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

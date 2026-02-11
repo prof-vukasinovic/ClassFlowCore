@@ -1,4 +1,4 @@
-package com.eidd;
+package com.eidd.model;
 
 import java.util.ArrayList;
 import java.util.List;

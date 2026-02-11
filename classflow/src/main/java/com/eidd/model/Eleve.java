@@ -1,22 +1,25 @@
-package com.eidd;
+package com.eidd.model;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Eleve extends Utilisateur{
-    private int id;
+    private long id;
     private List<Remarque> remarques;
+    private Table table;
 
-    public Eleve(int id, String nom, String prenom) {
+
+
+    public Eleve(long id, String nom, String prenom) {
         super(nom, prenom);
         this.id = id;
         this.remarques = new ArrayList<>();
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -31,5 +34,11 @@ public class Eleve extends Utilisateur{
     public void removeRemarque(Remarque remarque) {
         this.remarques.remove(remarque);
     }
+    public Table getTable() {
+        return table;
+    }
 
+    public void setTable(Table table) {
+        this.table = table;
+    }
 }
