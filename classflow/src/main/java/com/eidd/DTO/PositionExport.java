@@ -1,18 +1,20 @@
-package com.eidd.model;
+package com.eidd.DTO;
 
-public class Position {
+public class PositionExport {
     private int x;
     private int y;
 
-    public Position(int x, int y) {
+    public PositionExport() {}
+
+    public PositionExport(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public Position(com.eidd.DTO.PositionExport dto) {
-        if (dto != null) {
-            this.x = dto.getX();
-            this.y = dto.getY();
+    public PositionExport(com.eidd.model.Position p) {
+        if (p != null) {
+            this.x = p.getX();
+            this.y = p.getY();
         }
     }
 

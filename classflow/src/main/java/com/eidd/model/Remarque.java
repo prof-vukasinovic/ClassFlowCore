@@ -14,6 +14,13 @@ public class Remarque {
         }
     }
 
+    public Remarque(com.eidd.DTO.RemarqueExport dto) {
+        if (dto != null) {
+            this.intitule = dto.getIntitule();
+            this.id = dto.getId();
+        }
+    }
+
     public String getIntitule() {
         return intitule;
     }

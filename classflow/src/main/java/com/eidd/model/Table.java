@@ -7,6 +7,12 @@ public class Table {
         this.position = position;
     }
 
+    public Table(com.eidd.DTO.TableExport dto) {
+        if (dto != null && dto.getPosition() != null) {
+            this.position = new Position(dto.getPosition());
+        }
+    }
+
     public Position getPosition() {
         return position;
     }
