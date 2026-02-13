@@ -21,8 +21,13 @@
     <repository>
       <id>github</id>
 		<name>Github Packages</name>
-      <url>https://maven.pkg.github.com/bastien-adiveze/ClassFlowCore</url>
+      <url>https://maven.pkg.github.com/prof-vukasinovic/ClassFlowCore</url>
     </repository>
+    <snapshotRepository>
+        <id>github</id>
+        <name>GitHub Snapshots</name>
+        <url>https://maven.pkg.github.com/prof-vukasinovic/ClassFlowCore</url>
+    </snapshotRepository>
   </distributionManagement>
 
  <!-- Import JUnit BOM -->
