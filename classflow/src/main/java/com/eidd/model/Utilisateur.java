@@ -17,7 +17,7 @@ public abstract class Utilisateur {
     }
 
     public String getNom() {
-        return nom+"lalala";
+        return nom;
     }
 
     public void setNom(String nom) {
