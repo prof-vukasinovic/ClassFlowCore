@@ -15,6 +15,20 @@ public class Eleve extends Utilisateur{
         this.remarques = new ArrayList<>();
     }
 
+    public Eleve(com.eidd.DTO.EleveExport dto) {
+        super((dto != null) ? new com.eidd.DTO.UtilisateurExport(dto.getNom(), dto.getPrenom()) : null);
+        this.remarques = new ArrayList<>();
+        if (dto != null) {
+            this.id = dto.getId();
+            if (dto.getRemarques() != null) {
+                for (com.eidd.DTO.RemarqueExport re : dto.getRemarques()) {
+                    this.remarques.add(new Remarque(re));
+                }
+            }
+            if (dto.getTable() != null) this.table = new Table(dto.getTable());
+        }
+    }
+
     public long getId() {
         return id;
     }

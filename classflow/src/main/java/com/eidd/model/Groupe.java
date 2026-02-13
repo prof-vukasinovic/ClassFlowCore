@@ -10,6 +10,15 @@ public class Groupe {
         this.eleves = new ArrayList<>();
     }
 
+    public Groupe(com.eidd.DTO.GroupeExport dto) {
+        this.eleves = new ArrayList<>();
+        if (dto != null && dto.getEleves() != null) {
+            for (com.eidd.DTO.EleveExport ee : dto.getEleves()) {
+                this.eleves.add(new Eleve(ee));
+            }
+        }
+    }
+
     public List<Eleve> getEleves() {
         return eleves;
     }

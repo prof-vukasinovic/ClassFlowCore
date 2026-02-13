@@ -1,10 +1,9 @@
 package com.eidd.service;
 import java.util.List;
 
-import com.eidd.model.ClassRoom;
-import com.eidd.model.Eleve;
-import com.eidd.model.Table;
-import com.eidd.repositories.ClassRoomRespository;
+import com.eidd.DTO.*;
+import com.eidd.model.*;
+import com.eidd.repositories.*;
 
 public class ClassRoomService {
     private ClassRoomRespository classRoomRespository=new ClassRoomRespository();
@@ -51,5 +50,15 @@ public class ClassRoomService {
     public List<Eleve> getElevesByClassRoomId(long id) {
         ClassRoom classRoom = classRoomRespository.getClassRoomById(id);
         return classRoom.getEleves().getEleves();
+    }
+
+    public ClassRoomExport chargerClassRoom(long id){
+        ClassRoom c=classRoomRespository.getClassRoomById(id);
+        return(new ClassRoomExport(c));
+    }
+
+    public void sauvegarderClassRoom(ClassRoomExport classRoomExport){
+        ClassRoom c=new ClassRoom(classRoomExport);
+        classRoomRespository.addClassRoom(c);
     }
 }

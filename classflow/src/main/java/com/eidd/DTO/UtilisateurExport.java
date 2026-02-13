@@ -1,18 +1,20 @@
-package com.eidd.model;
+package com.eidd.DTO;
 
-public abstract class Utilisateur {
+public class UtilisateurExport {
     private String nom;
     private String prenom;
 
-    public Utilisateur(String nom, String prenom) {
+    public UtilisateurExport() {}
+
+    public UtilisateurExport(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
     }
 
-    public Utilisateur(com.eidd.DTO.UtilisateurExport dto) {
-        if (dto != null) {
-            this.nom = dto.getNom();
-            this.prenom = dto.getPrenom();
+    public UtilisateurExport(com.eidd.model.Utilisateur u) {
+        if (u != null) {
+            this.nom = u.getNom();
+            this.prenom = u.getPrenom();
         }
     }
 

@@ -23,6 +23,20 @@ public class ClassRoom {
         ClassRoomRespository.incrementCounter();
     }
 
+    public ClassRoom(com.eidd.DTO.ClassRoomExport dto) {
+        if (dto != null) {
+            this.id = dto.getId();
+            this.nom = dto.getNom();
+            if (dto.getEleves() != null) this.eleves = new Groupe(dto.getEleves());
+            if (dto.getTables() != null) {
+                this.tables = new java.util.ArrayList<>();
+                for (com.eidd.DTO.TableExport te : dto.getTables()) {
+                    this.tables.add(new Table(te));
+                }
+            }
+        }
+    }
+
     public Groupe getEleves() {
         return eleves;
     }
