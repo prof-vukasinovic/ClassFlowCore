@@ -1,10 +1,6 @@
-package com.eidd;
+package com.eidd.model;
 
 import org.junit.jupiter.api.*;
-
-import com.eidd.model.Remarque;
-import com.eidd.model.RemarqueToolKit;
-
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 import java.io.PrintWriter;

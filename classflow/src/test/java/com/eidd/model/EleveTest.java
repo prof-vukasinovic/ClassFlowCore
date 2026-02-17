@@ -1,13 +1,6 @@
-package com.eidd;
+package com.eidd.model;
 
 import org.junit.jupiter.api.*;
-
-import com.eidd.model.Eleve;
-import com.eidd.model.Position;
-import com.eidd.model.Remarque;
-import com.eidd.model.RemarqueToolKit;
-import com.eidd.model.Table;
-
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 import java.io.PrintWriter;
