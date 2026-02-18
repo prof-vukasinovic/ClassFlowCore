@@ -7,42 +7,40 @@ pipeline {
     timestamps()
     disableConcurrentBuilds()
     ansiColor('xterm')
-    skipDefaultCheckout(true)
+  }
+
+  environment {
+    // Force cmd.exe pour les étapes bat()
+    COMSPEC = 'C:\\Windows\\System32\\cmd.exe'
+
+    // Maven (projet dans classflow/)
+    MVN = "mvn -B -ntp -Dmaven.repo.local=%WORKSPACE%\\.m2\\repository -f classflow\\pom.xml"
   }
 
   stages {
-    stage('Checkout') {
+    stage('Diag') {
       steps {
-        checkout scm
+        bat 'echo COMSPEC=%COMSPEC%'
+        bat 'where cmd'
+        bat 'where mvn || echo "mvn introuvable (Maven pas dans PATH)"'
+        bat 'mvn -v || echo "Impossible d\'executer mvn"'
       }
+    }
+
+    stage('Checkout') {
+      steps { checkout scm }
     }
 
     stage('Build + Tests + Verify') {
       steps {
-        script {
-          if (isUnix()) {
-            sh '''
-              mvn -B -ntp -f classflow/pom.xml clean verify
-            '''
-          } else {
-            bat '''
-              mvn -B -ntp -f classflow/pom.xml clean verify
-            '''
-          }
-        }
+        bat "%MVN% clean verify"
       }
       post {
         always {
-          junit allowEmptyResults: true, testResults: 'classflow/target/surefire-reports/*.xml'
-          archiveArtifacts artifacts: 'classflow/target/*.jar', fingerprint: true, allowEmptyArchive: true
+          junit allowEmptyResults: true, testResults: 'classflow\\target\\surefire-reports\\*.xml'
+          archiveArtifacts artifacts: 'classflow\\target\\*.jar', fingerprint: true, allowEmptyArchive: true
         }
       }
-    }
-  }
-
-  post {
-    failure {
-      echo "CI en échec: consulte les logs et les rapports de tests."
     }
   }
 }
