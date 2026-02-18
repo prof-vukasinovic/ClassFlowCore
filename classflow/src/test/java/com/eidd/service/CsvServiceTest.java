@@ -19,6 +19,8 @@ public class CsvServiceTest {
         e.setPrenom("John");
         g.addEleve(e);
         cre.setEleves(g);
+        cre.setNom("Test1Class");
+        cre.setId(1);
 
         String csv = CsvService.exportToCsv(cre);
         assertNotNull(csv);
@@ -41,7 +43,8 @@ public class CsvServiceTest {
         g.addEleve(e1);
         g.addEleve(e2);
         cre.setEleves(g);
-
+        cre.setNom("Test2Class");
+        cre.setId(2);
         String csv = CsvService.exportToCsv(cre);
         assertNotNull(csv);
         assertTrue(csv.contains("E1"));
@@ -65,6 +68,8 @@ public class CsvServiceTest {
         g.addEleve(e1);
         g.addEleve(e2);
         cre.setEleves(g);
+        cre.setNom("Test3Class");
+        cre.setId(3);
 
         String csv = CsvService.exportToCsv(cre);
         ClassRoomExport result = CsvService.importFromCsv(csv);

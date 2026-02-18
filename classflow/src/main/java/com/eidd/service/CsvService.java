@@ -11,22 +11,33 @@ public class CsvService {
         if(csvContent.startsWith("\uFEFF")) {
             csvContent = csvContent.substring(1);
         }
+        int firstLineEndIndex = csvContent.indexOf('\n');
+        String lineClasse = csvContent.substring(0, firstLineEndIndex).trim();
+        String csvElevesOnly = csvContent.substring(firstLineEndIndex + 1);
         CsvMapper csvMapper = new CsvMapper();
         try {
             CsvSchema schema = csvMapper.schemaFor(EleveExport.class)
-                    .withHeader()            
                     .withColumnSeparator(';') 
                     .withNullValue("")
                     .withQuoteChar('\"');
             MappingIterator<EleveExport> it = csvMapper
                     .readerFor(EleveExport.class)
                     .with(schema)
-                    .readValues(csvContent);
+                    .readValues(csvElevesOnly);
             List<EleveExport> listeEleves = it.readAll();
             GroupeExport groupe = new GroupeExport();
             groupe.setEleves(listeEleves);
             ClassRoomExport classRoom = new ClassRoomExport();
             classRoom.setEleves(groupe);
+            List<TableExport> tables = new java.util.ArrayList<>();
+            for(int i=0; i<listeEleves.size(); i++) {
+                TableExport table = new TableExport(new PositionExport(i/7, i%7));
+                tables.add(table);
+            }
+            classRoom.setTables(tables);
+            String[] metadata = lineClasse.split(";");
+            if(metadata.length > 0) classRoom.setNom(metadata[1]);
+            classRoom.setId(Long.parseLong(metadata[0]));
             return classRoom;
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,11 +50,11 @@ public class CsvService {
         csvMapper.configure(CsvGenerator.Feature.ALWAYS_QUOTE_STRINGS, true);
         try {
             CsvSchema schema = csvMapper.schemaFor(EleveExport.class)
-            .withHeader()
             .withColumnSeparator(';')  
             .withNullValue("")         
             .withQuoteChar('\"');
-            String csvString = '\uFEFF' +csvMapper.writer(schema).writeValueAsString(eleves);
+            String headerClasse = classRoomExport.getId() + ";\"" + classRoomExport.getNom() + "\"\n";
+            String csvString = '\uFEFF' + headerClasse + csvMapper.writer(schema).writeValueAsString(eleves);
             System.out.println(csvString);
             return csvString;
         } catch (Exception e) {
