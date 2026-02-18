@@ -14,6 +14,8 @@ public class ClassRoom {
         this.id = ClassRoomRespository.getCounter();
         ClassRoomRespository.incrementCounter();
         this.nom = nom;
+        this.eleves = new Groupe();
+        this.tables = new java.util.ArrayList<>();
     }
 
     public ClassRoom(Groupe eleves, List<Table> tables) {

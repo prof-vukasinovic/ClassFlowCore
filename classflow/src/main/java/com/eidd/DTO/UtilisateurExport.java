@@ -1,7 +1,11 @@
 package com.eidd.DTO;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class UtilisateurExport {
+    @JsonProperty("nom")
     private String nom;
+    @JsonProperty("prenom")
     private String prenom;
 
     public UtilisateurExport() {}

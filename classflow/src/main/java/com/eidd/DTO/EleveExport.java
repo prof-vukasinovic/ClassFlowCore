@@ -1,11 +1,17 @@
 package com.eidd.DTO;
 
 import java.util.List;
-import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import java.util.ArrayList;
+@JsonPropertyOrder({"id", "nom", "prénom"})
 public class EleveExport extends UtilisateurExport{
     private long id;
+    @JsonIgnore 
     private List<RemarqueExport> remarques = new ArrayList<>();
+    @JsonIgnore
     private TableExport table;
 
     public EleveExport() {}

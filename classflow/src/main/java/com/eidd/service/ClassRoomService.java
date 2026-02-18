@@ -13,7 +13,6 @@ public class ClassRoomService {
         classRoom.getEleves().addEleve(eleve);
     }
 
-
     public void supprimerEleve(long id, Eleve eleve) {
         ClassRoom classRoom = classRoomRespository.getClassRoomById(id);
         classRoom.getEleves().removeEleve(eleve);
@@ -29,17 +28,24 @@ public class ClassRoomService {
         classRoom.getTables().remove(table);
     }
 
-    public ClassRoom creerClassRoom(String nom) {
+    public ClassRoomExport creerClassRoom(String nom) {
         ClassRoom classRoom =new ClassRoom(nom);
         classRoomRespository.addClassRoom(classRoom);
-        return classRoom;
+        return new ClassRoomExport(classRoom);
     }
-    public ClassRoom getClassRoomById(long id) {
-        return classRoomRespository.getClassRoomById(id);
+    public ClassRoomExport getClassRoomById(long id) {
+        if(classRoomRespository.getClassRoomById(id)==null){
+            return null;
+        }
+        return new ClassRoomExport(classRoomRespository.getClassRoomById(id));
     }
 
-    public List<ClassRoom> getAllClassRooms() {
-        return classRoomRespository.getClassRooms();
+    public List<ClassRoomExport> getAllClassRooms() {
+        List<ClassRoomExport> classRoomExports = new java.util.ArrayList<>();
+        for (ClassRoom classRoom : classRoomRespository.getClassRooms()) {
+            classRoomExports.add(new ClassRoomExport(classRoom));
+        }
+        return classRoomExports;
     }
     public void supprimerClassRoom(long id) {
         ClassRoom classRoom = classRoomRespository.getClassRoomById(id);
@@ -47,9 +53,13 @@ public class ClassRoomService {
             classRoomRespository.getClassRooms().remove(classRoom);
         }
     }
-    public List<Eleve> getElevesByClassRoomId(long id) {
+    public List<EleveExport> getElevesByClassRoomId(long id) {
         ClassRoom classRoom = classRoomRespository.getClassRoomById(id);
-        return classRoom.getEleves().getEleves();
+        List<EleveExport> eleveExports = new java.util.ArrayList<>();
+        for (Eleve eleve : classRoom.getEleves().getEleves()) {
+            eleveExports.add(new EleveExport(eleve));
+        }
+        return eleveExports;
     }
 
     public ClassRoomExport chargerClassRoom(long id){
