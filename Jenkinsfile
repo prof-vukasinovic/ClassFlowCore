@@ -25,7 +25,7 @@ pipeline {
               mvn -B -ntp -f classflow/pom.xml clean verify
             '''
           } else {
-            powershell '''
+            bat '''
               mvn -B -ntp -f classflow/pom.xml clean verify
             '''
           }
