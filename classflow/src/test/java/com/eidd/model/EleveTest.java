@@ -33,7 +33,8 @@ public class EleveTest {
         assertEquals(10, e.getId());
         assertEquals("Nom", e.getNom());
         assertEquals("Prenom", e.getPrenom());
-        Remarque r = new Remarque("TestEleve");
+        Cours c = new Cours(1, new java.util.Date());
+        Remarque r = new Remarque("TestEleve", c);
         e.addRemarque(r);
         assertEquals(1, e.getRemarques().size());
         e.removeRemarque(r);
@@ -43,8 +44,10 @@ public class EleveTest {
     @Test
     public void testMultipleRemarques() {
         Eleve e = new Eleve(5, "Dupont", "Jean");
-        Remarque r1 = new Remarque("Remarque1");
-        Remarque r2 = new Remarque("Remarque2");
+        Cours c1 = new Cours(1, new java.util.Date());
+        Cours c2 = new Cours(2, new java.util.Date());
+        Remarque r1 = new Remarque("Remarque1", c1);
+        Remarque r2 = new Remarque("Remarque2", c2);
         e.addRemarque(r1);
         e.addRemarque(r2);
         assertEquals(2, e.getRemarques().size());

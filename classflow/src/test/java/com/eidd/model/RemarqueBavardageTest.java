@@ -21,7 +21,7 @@ public class RemarqueBavardageTest {
 
     @Test
     public void testRemarqueBavardageCreationWithCours() {
-        Cours c = new Cours(1);
+        Cours c = new Cours(1, new java.util.Date());
         RemarqueBavardage rb = new RemarqueBavardage("ChatEnCours", c);
         assertEquals("ChatEnCours", rb.getIntitule());
         assertEquals(c, rb.getCours());
@@ -30,7 +30,8 @@ public class RemarqueBavardageTest {
 
     @Test
     public void testRemarqueBavardageCreationWithCoursNumero() {
-        RemarqueBavardage rb = new RemarqueBavardage("ChatEnCours", 5);
+        Cours c = new Cours(5, new java.util.Date());
+        RemarqueBavardage rb = new RemarqueBavardage("ChatEnCours", c);
         assertEquals("ChatEnCours", rb.getIntitule());
         assertNotNull(rb.getCours());
         assertEquals(5, rb.getCours().getNumero());
@@ -38,7 +39,7 @@ public class RemarqueBavardageTest {
 
     @Test
     public void testRemarqueBavardageGettersSetters() {
-        Cours c = new Cours(2);
+        Cours c = new Cours(2, new java.util.Date());
         RemarqueBavardage rb = new RemarqueBavardage("TestBavardage", c);
         rb.setIntitule("ModifiedBavardage");
         assertEquals("ModifiedBavardage", rb.getIntitule());
@@ -46,32 +47,39 @@ public class RemarqueBavardageTest {
 
     @Test
     public void testRemarqueBavardageCoursGettersSetters() {
-        RemarqueBavardage rb = new RemarqueBavardage("Bavardage", 1);
-        Cours newCours = new Cours(10);
+        Cours c = new Cours(1, new java.util.Date());
+        RemarqueBavardage rb = new RemarqueBavardage("Bavardage", c);
+        Cours newCours = new Cours(10, new java.util.Date());
         rb.setCours(newCours);
         assertEquals(10, rb.getCours().getNumero());
     }
 
     @Test
     public void testRemarqueBavardageIdAssignment() {
-        RemarqueBavardage rb1 = new RemarqueBavardage("Bav1", 1);
-        RemarqueBavardage rb2 = new RemarqueBavardage("Bav2", 2);
+        Cours c1 = new Cours(1, new java.util.Date());
+        Cours c2 = new Cours(2, new java.util.Date());
+        RemarqueBavardage rb1 = new RemarqueBavardage("Bav1", c1);
+        RemarqueBavardage rb2 = new RemarqueBavardage("Bav2", c2);
         assertEquals(0, rb1.getId());
         assertEquals(1, rb2.getId());
     }
 
     @Test
     public void testRemarqueBavardageIdGettersSetters() {
-        RemarqueBavardage rb = new RemarqueBavardage("TestBav", 1);
+        Cours c = new Cours(1, new java.util.Date());
+        RemarqueBavardage rb = new RemarqueBavardage("TestBav", c);
         rb.setId(99);
         assertEquals(99, rb.getId());
     }
 
     @Test
     public void testMultipleRemarqueBavardageCreation() {
-        RemarqueBavardage rb1 = new RemarqueBavardage("Bavardage1", 1);
-        RemarqueBavardage rb2 = new RemarqueBavardage("Bavardage2", 2);
-        RemarqueBavardage rb3 = new RemarqueBavardage("Bavardage3", 3);
+        Cours c1 = new Cours(1, new java.util.Date());
+        Cours c2 = new Cours(2, new java.util.Date());
+        Cours c3 = new Cours(3, new java.util.Date());
+        RemarqueBavardage rb1 = new RemarqueBavardage("Bavardage1", c1);
+        RemarqueBavardage rb2 = new RemarqueBavardage("Bavardage2", c2);
+        RemarqueBavardage rb3 = new RemarqueBavardage("Bavardage3", c3);
         assertEquals(0, rb1.getId());
         assertEquals(1, rb2.getId());
         assertEquals(2, rb3.getId());
@@ -79,14 +87,16 @@ public class RemarqueBavardageTest {
 
     @Test
     public void testRemarqueBavardageDuplicates() {
-        RemarqueBavardage rb1 = new RemarqueBavardage("DuplicateBav", 1);
-        RemarqueBavardage rb2 = new RemarqueBavardage("DuplicateBav", 1);
+        Cours c = new Cours(1, new java.util.Date());
+        RemarqueBavardage rb1 = new RemarqueBavardage("DuplicateBav", c);
+        RemarqueBavardage rb2 = new RemarqueBavardage("DuplicateBav", c);
         assertEquals(rb1.getId(), rb2.getId());
     }
 
     @Test
     public void testRemarqueBavardageInheritsFromRemarque() {
-        RemarqueBavardage rb = new RemarqueBavardage("Bavardage", 5);
+        Cours c = new Cours(5, new java.util.Date());
+        RemarqueBavardage rb = new RemarqueBavardage("Bavardage", c);
         assertTrue(rb instanceof RemarqueBavardage);
     }
 

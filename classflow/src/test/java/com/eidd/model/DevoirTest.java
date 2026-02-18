@@ -21,14 +21,16 @@ public class DevoirTest {
 
     @Test
     public void testDevoirCreation() {
-        Devoir d = new Devoir("Devoir1");
+        Cours c = new Cours(1, new java.util.Date());
+        Devoir d = new Devoir("Devoir1", c);
         assertEquals("Devoir1", d.getIntitule());
         assertNotNull(d.getId());
     }
 
     @Test
     public void testDevoirInheritsFromRemarque() {
-        Devoir d = new Devoir("TestDevoir");
+        Cours c = new Cours(1, new java.util.Date());
+        Devoir d = new Devoir("TestDevoir", c);
         assertEquals("TestDevoir", d.getIntitule());
         d.setIntitule("ModifiedDevoir");
         assertEquals("ModifiedDevoir", d.getIntitule());
@@ -36,24 +38,30 @@ public class DevoirTest {
 
     @Test
     public void testDevoirIdAssignment() {
-        Devoir d1 = new Devoir("Devoir1");
-        Devoir d2 = new Devoir("Devoir2");
+        Cours c1 = new Cours(1, new java.util.Date());
+        Cours c2 = new Cours(2, new java.util.Date());
+        Devoir d1 = new Devoir("Devoir1", c1);
+        Devoir d2 = new Devoir("Devoir2", c2);
         assertEquals(0, d1.getId());
         assertEquals(1, d2.getId());
     }
 
     @Test
     public void testDevoirIdGettersSetters() {
-        Devoir d = new Devoir("TestDevoir");
+        Cours c = new Cours(1, new java.util.Date());
+        Devoir d = new Devoir("TestDevoir", c);
         d.setId(100);
         assertEquals(100, d.getId());
     }
 
     @Test
     public void testMultipleDevoirCreation() {
-        Devoir d1 = new Devoir("D1");
-        Devoir d2 = new Devoir("D2");
-        Devoir d3 = new Devoir("D3");
+        Cours c1 = new Cours(1, new java.util.Date());
+        Cours c2 = new Cours(2, new java.util.Date());
+        Cours c3 = new Cours(3, new java.util.Date());
+        Devoir d1 = new Devoir("D1", c1);
+        Devoir d2 = new Devoir("D2", c2);
+        Devoir d3 = new Devoir("D3", c3);
         assertEquals(0, d1.getId());
         assertEquals(1, d2.getId());
         assertEquals(2, d3.getId());
@@ -61,8 +69,9 @@ public class DevoirTest {
 
     @Test
     public void testDevoirDuplicates() {
-        Devoir d1 = new Devoir("DuplicateDevoir");
-        Devoir d2 = new Devoir("DuplicateDevoir");
+        Cours c = new Cours(1, new java.util.Date());
+        Devoir d1 = new Devoir("DuplicateDevoir", c);
+        Devoir d2 = new Devoir("DuplicateDevoir", c);
         assertEquals(d1.getId(), d2.getId());
     }
 

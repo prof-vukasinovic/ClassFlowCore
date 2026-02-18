@@ -42,8 +42,10 @@ public class EleveExportTest {
     @Test
     public void testEleveExportFromModelWithRemarques() {
         Eleve e = new Eleve(1, "Dupont", "Jean");
-        Remarque r1 = new Remarque("Remarque1");
-        Remarque r2 = new Remarque("Remarque2");
+        Cours c1 = new Cours(1, new java.util.Date());
+        Cours c2 = new Cours(2, new java.util.Date());
+        Remarque r1 = new Remarque("Remarque1", c1);
+        Remarque r2 = new Remarque("Remarque2", c2);
         e.addRemarque(r1);
         e.addRemarque(r2);
         EleveExport ee = new EleveExport(e);
@@ -75,7 +77,9 @@ public class EleveExportTest {
         EleveExport ee = new EleveExport();
         List<RemarqueExport> remarques = ee.getRemarques();
         assertEquals(0, remarques.size());
-        RemarqueExport re = new RemarqueExport("NewRemarque", 1);
+        Cours c = new Cours(1, new java.util.Date());
+        CoursExport ce = new CoursExport(c);
+        RemarqueExport re = new RemarqueExport("NewRemarque", 1, ce);
         remarques.add(re);
         assertEquals(1, ee.getRemarques().size());
     }

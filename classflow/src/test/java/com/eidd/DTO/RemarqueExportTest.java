@@ -30,17 +30,22 @@ public class RemarqueExportTest {
 
     @Test
     public void testRemarqueExportWithParameters() {
-        RemarqueExport re = new RemarqueExport("TestRemarque", 5);
+        Cours c = new Cours(1, new java.util.Date());
+        CoursExport ce = new CoursExport(c);
+        RemarqueExport re = new RemarqueExport("TestRemarque", 5, ce);
         assertEquals("TestRemarque", re.getIntitule());
         assertEquals(5, re.getId());
+        assertEquals(ce, re.getCours());
     }
 
     @Test
     public void testRemarqueExportFromModel() {
-        Remarque r = new Remarque("ModelRemarque");
+        Cours c = new Cours(1, new java.util.Date());
+        Remarque r = new Remarque("ModelRemarque", c);
         RemarqueExport re = new RemarqueExport(r);
         assertEquals("ModelRemarque", re.getIntitule());
         assertEquals(r.getId(), re.getId());
+        assertNotNull(re.getCours());
     }
 
     @Test
@@ -55,13 +60,19 @@ public class RemarqueExportTest {
         RemarqueExport re = new RemarqueExport();
         re.setIntitule("NewRemarque");
         re.setId(100);
+        Cours c = new Cours(1, new java.util.Date());
+        CoursExport ce = new CoursExport(c);
+        re.setCours(ce);
         assertEquals("NewRemarque", re.getIntitule());
         assertEquals(100, re.getId());
+        assertEquals(ce, re.getCours());
     }
 
     @Test
     public void testRemarqueExportModification() {
-        RemarqueExport re = new RemarqueExport("Original", 1);
+        Cours c = new Cours(1, new java.util.Date());
+        CoursExport ce = new CoursExport(c);
+        RemarqueExport re = new RemarqueExport("Original", 1, ce);
         re.setIntitule("Modified");
         assertEquals("Modified", re.getIntitule());
         assertEquals(1, re.getId());
@@ -69,9 +80,15 @@ public class RemarqueExportTest {
 
     @Test
     public void testRemarqueExportMultipleObjects() {
-        RemarqueExport re1 = new RemarqueExport("Remarque1", 1);
-        RemarqueExport re2 = new RemarqueExport("Remarque2", 2);
-        RemarqueExport re3 = new RemarqueExport("Remarque3", 3);
+        Cours c1 = new Cours(1, new java.util.Date());
+        Cours c2 = new Cours(2, new java.util.Date());
+        Cours c3 = new Cours(3, new java.util.Date());
+        CoursExport ce1 = new CoursExport(c1);
+        CoursExport ce2 = new CoursExport(c2);
+        CoursExport ce3 = new CoursExport(c3);
+        RemarqueExport re1 = new RemarqueExport("Remarque1", 1, ce1);
+        RemarqueExport re2 = new RemarqueExport("Remarque2", 2, ce2);
+        RemarqueExport re3 = new RemarqueExport("Remarque3", 3, ce3);
         assertEquals("Remarque1", re1.getIntitule());
         assertEquals("Remarque2", re2.getIntitule());
         assertEquals("Remarque3", re3.getIntitule());
