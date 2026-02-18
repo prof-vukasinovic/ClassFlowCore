@@ -1,13 +1,9 @@
-package com.eidd;
+package com.eidd.service;
 
 import org.junit.jupiter.api.*;
 
-import com.eidd.model.Eleve;
-import com.eidd.model.Groupe;
-import com.eidd.service.GroupeService;
-
+import com.eidd.model.*;
 import static org.junit.jupiter.api.Assertions.*;
-
 public class GroupeServiceTest {
     private GroupeService service;
 

@@ -1,15 +1,9 @@
-package com.eidd;
+package com.eidd.service;
 
 import org.junit.jupiter.api.*;
 
-import com.eidd.model.ClassRoom;
-import com.eidd.model.Eleve;
-import com.eidd.model.Groupe;
-import com.eidd.model.Position;
-import com.eidd.model.Table;
+import com.eidd.model.*;
 import com.eidd.repositories.ClassRoomRespository;
-import com.eidd.service.ClassRoomService;
-
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;

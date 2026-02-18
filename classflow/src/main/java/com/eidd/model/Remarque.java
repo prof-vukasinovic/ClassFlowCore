@@ -3,9 +3,10 @@ package com.eidd.model;
 public class Remarque {
     private String intitule;
     private long id;
-
-    public Remarque(String intitule) {
+    private Cours cours;
+    public Remarque(String intitule, Cours cours) {
         this.intitule = intitule;
+        this.cours = cours;
         try{
             this.id=RemarqueToolKit.getNewRemarqueId(intitule);
         } catch (java.io.IOException e) {
@@ -37,5 +38,11 @@ public class Remarque {
         this.id = id;
     }
 
+    public Cours getCours() {
+        return cours;
+    }
+    public void setCours(Cours cours) {
+        this.cours = cours;
+    }
 
 }

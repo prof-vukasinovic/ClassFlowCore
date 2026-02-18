@@ -1,11 +1,8 @@
-package com.eidd;
+package com.eidd.service;
 
 import org.junit.jupiter.api.*;
 
-import com.eidd.model.Position;
-import com.eidd.model.Table;
-import com.eidd.service.TableService;
-
+import com.eidd.model.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TableServiceTest {

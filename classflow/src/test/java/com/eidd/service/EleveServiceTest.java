@@ -1,14 +1,7 @@
-package com.eidd;
+package com.eidd.service;
 
 import org.junit.jupiter.api.*;
-
-import com.eidd.model.Eleve;
-import com.eidd.model.Position;
-import com.eidd.model.Remarque;
-import com.eidd.model.RemarqueToolKit;
-import com.eidd.model.Table;
-import com.eidd.service.EleveService;
-
+import com.eidd.model.*;
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,7 +25,8 @@ public class EleveServiceTest {
     @Test
     public void testAjouterRemarque() {
         Eleve e = new Eleve(1, "Test", "Test");
-        Remarque r = service.ajouterRemarque(e, "Ma Remarque");
+        Cours c = new Cours(1, new java.util.Date());
+        Remarque r = service.ajouterRemarque(e, "Ma Remarque", c);
         assertNotNull(r);
         assertEquals(1, e.getRemarques().size());
     }
@@ -40,16 +34,20 @@ public class EleveServiceTest {
     @Test
     public void testAjouterMultipleRemarques() {
         Eleve e = new Eleve(1, "Test", "Test");
-        service.ajouterRemarque(e, "Remarque1");
-        service.ajouterRemarque(e, "Remarque2");
-        service.ajouterRemarque(e, "Remarque3");
+        Cours c1 = new Cours(1, new java.util.Date());
+        Cours c2 = new Cours(2, new java.util.Date());
+        Cours c3 = new Cours(3, new java.util.Date());
+        service.ajouterRemarque(e, "Remarque1", c1);
+        service.ajouterRemarque(e, "Remarque2", c2);
+        service.ajouterRemarque(e, "Remarque3", c3);
         assertEquals(3, e.getRemarques().size());
     }
 
     @Test
     public void testSupprimerRemarque() {
         Eleve e = new Eleve(1, "Test", "Test");
-        Remarque r = service.ajouterRemarque(e, "TestRemarque");
+        Cours c = new Cours(1, new java.util.Date());
+        Remarque r = service.ajouterRemarque(e, "TestRemarque", c);
         assertEquals(1, e.getRemarques().size());
         service.supprimerRemarque(e, r);
         assertEquals(0, e.getRemarques().size());
@@ -71,8 +69,10 @@ public class EleveServiceTest {
     @Test
     public void testAjouterRemarqueAndSupprimerRemarque() {
         Eleve e = new Eleve(1, "Test", "Test");
-        Remarque r1 = service.ajouterRemarque(e, "Remarque1");
-        Remarque r2 = service.ajouterRemarque(e, "Remarque2");
+        Cours c1 = new Cours(1, new java.util.Date());
+        Cours c2 = new Cours(2, new java.util.Date());
+        Remarque r1 = service.ajouterRemarque(e, "Remarque1", c1);
+        Remarque r2 = service.ajouterRemarque(e, "Remarque2", c2);
         assertEquals(2, e.getRemarques().size());
         
         service.supprimerRemarque(e, r1);
@@ -100,16 +100,20 @@ public class EleveServiceTest {
     @Test
     public void testAjouterRemarqueReturnsCorrectRemarque() {
         Eleve e = new Eleve(1, "Test", "Test");
-        Remarque r = service.ajouterRemarque(e, "TestIntitule");
+        Cours c = new Cours(1, new java.util.Date());
+        Remarque r = service.ajouterRemarque(e, "TestIntitule", c);
         assertEquals("TestIntitule", r.getIntitule());
     }
 
     @Test
     public void testSupprimerMultipleRemarques() {
         Eleve e = new Eleve(1, "Test", "Test");
-        Remarque r1 = service.ajouterRemarque(e, "R1");
-        Remarque r2 = service.ajouterRemarque(e, "R2");
-        Remarque r3 = service.ajouterRemarque(e, "R3");
+        Cours c1 = new Cours(1, new java.util.Date());
+        Cours c2 = new Cours(2, new java.util.Date());
+        Cours c3 = new Cours(3, new java.util.Date());
+        Remarque r1 = service.ajouterRemarque(e, "R1", c1);
+        Remarque r2 = service.ajouterRemarque(e, "R2", c2);
+        Remarque r3 = service.ajouterRemarque(e, "R3", c3);
         assertEquals(3, e.getRemarques().size());
         
         service.supprimerRemarque(e, r1);

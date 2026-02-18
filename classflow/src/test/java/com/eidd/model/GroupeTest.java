@@ -1,10 +1,6 @@
-package com.eidd;
+package com.eidd.model;
 
 import org.junit.jupiter.api.*;
-
-import com.eidd.model.Eleve;
-import com.eidd.model.Groupe;
-
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 import java.util.ArrayList;

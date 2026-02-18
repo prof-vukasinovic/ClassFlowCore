@@ -1,13 +1,10 @@
 package com.eidd.service;
-
-import com.eidd.model.Eleve;
-import com.eidd.model.Remarque;
-import com.eidd.model.Table;
+import com.eidd.model.*;
 
 public class EleveService{
 
-    public Remarque ajouterRemarque(Eleve eleve, String intitule) {
-        Remarque remarque = new Remarque(intitule);
+    public Remarque ajouterRemarque(Eleve eleve, String intitule,Cours cours) {
+        Remarque remarque = new Remarque(intitule, cours);
         eleve.addRemarque(remarque);
         return remarque;
     }
