@@ -1,20 +1,13 @@
 pipeline {
   agent any
 
-  triggers {
-    // Déclenchement via webhook GitHub (plugin GitHub requis côté Jenkins)
-    githubPush()
-  }
+  triggers { githubPush() }
 
   options {
     timestamps()
     disableConcurrentBuilds()
     ansiColor('xterm')
-  }
-
-  environment {
-    // Cache Maven dans le workspace (simple et efficace sur agents persistants)
-    MVN = "mvn -B -ntp -Dmaven.repo.local=${WORKSPACE}/.m2/repository -f classflow/pom.xml"
+    skipDefaultCheckout(true)
   }
 
   stages {
@@ -26,15 +19,21 @@ pipeline {
 
     stage('Build + Tests + Verify') {
       steps {
-        // verify = tests + vérifications Maven (ex: enforcer/checkstyle/jacoco si configurés)
-        sh "${env.MVN} clean verify"
+        script {
+          if (isUnix()) {
+            sh '''
+              mvn -B -ntp -f classflow/pom.xml clean verify
+            '''
+          } else {
+            bat '''
+              mvn -B -ntp -f classflow/pom.xml clean verify
+            '''
+          }
+        }
       }
       post {
         always {
-          // Résultats JUnit (Surefire)
           junit allowEmptyResults: true, testResults: 'classflow/target/surefire-reports/*.xml'
-
-          // Archive les jars produits (inclut jar normal + jar-with-dependencies si généré)
           archiveArtifacts artifacts: 'classflow/target/*.jar', fingerprint: true, allowEmptyArchive: true
         }
       }
