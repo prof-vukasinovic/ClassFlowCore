@@ -3,9 +3,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.eidd.DTO.*;
-import com.eidd.model.*;
-import com.eidd.repositories.*;
+import com.eidd.DTO.ClassRoomExport;
+import com.eidd.DTO.EleveExport;
+import com.eidd.model.ClassRoom;
+import com.eidd.model.Eleve;
+import com.eidd.model.Table;
+import com.eidd.repositories.ClassRoomRepository;
 
 @Service
 public class ClassRoomService {
@@ -41,6 +44,13 @@ public class ClassRoomService {
 
     public ClassRoomExport creerClassRoom(String nom) {
         ClassRoom classRoom =new ClassRoom(nom);
+        classRoomRepository.save(classRoom);
+        return new ClassRoomExport(classRoom);
+    }
+
+    public ClassRoomExport creerClassRoom(String nom, String owner) {
+        ClassRoom classRoom = new ClassRoom(nom);
+        classRoom.setOwner(owner);
         classRoomRepository.save(classRoom);
         return new ClassRoomExport(classRoom);
     }

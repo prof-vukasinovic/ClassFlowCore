@@ -1,7 +1,14 @@
 package com.eidd.model;
 import java.util.List;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 @Entity
 public class ClassRoom {
     @OneToOne(cascade = CascadeType.ALL)
@@ -12,6 +19,8 @@ public class ClassRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nom;
+    @Column(name = "owner")
+    private String owner;
 
     
     public ClassRoom() {
@@ -73,5 +82,13 @@ public class ClassRoom {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }
