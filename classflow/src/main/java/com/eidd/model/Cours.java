@@ -2,9 +2,14 @@ package com.eidd.model;
 
 import java.util.Date;
 
+import jakarta.persistence.Embeddable;
+@Embeddable
 public class Cours {
     private int numero;
     private Date date;
+
+    public Cours() {
+    }
 
     public Cours(int numero, Date date) {
         this.numero = numero;

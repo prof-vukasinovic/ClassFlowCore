@@ -3,8 +3,15 @@ package com.eidd.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Groupe {
+    @OneToMany(cascade = jakarta.persistence.CascadeType.ALL)
     private List<Eleve> eleves;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     public Groupe() {
         this.eleves = new ArrayList<>();

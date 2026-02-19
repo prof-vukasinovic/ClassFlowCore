@@ -1,8 +1,11 @@
 package com.eidd.service;
 
+import org.springframework.stereotype.Service;
+
 import com.eidd.model.Position;
 import com.eidd.model.Table;
 
+@Service
 public class TableService {
     public void deplacerTable(Table table, Position nouvellePosition) {
         table.setPosition(nouvellePosition);

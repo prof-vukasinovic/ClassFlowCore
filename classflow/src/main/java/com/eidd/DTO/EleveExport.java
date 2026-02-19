@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.ArrayList;
 @JsonPropertyOrder({"id", "nom", "prénom"})
 public class EleveExport extends UtilisateurExport{
-    private long id;
     @JsonIgnore 
     private List<RemarqueExport> remarques = new ArrayList<>();
     @JsonIgnore
@@ -19,7 +18,6 @@ public class EleveExport extends UtilisateurExport{
     public EleveExport(com.eidd.model.Eleve e) {
         super(e);
         if (e != null) {
-            this.id = e.getId();
             if (e.getRemarques() != null) {
                 for (com.eidd.model.Remarque r : e.getRemarques()) {
                     this.remarques.add(new RemarqueExport(r));
@@ -31,13 +29,6 @@ public class EleveExport extends UtilisateurExport{
         }
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public List<RemarqueExport> getRemarques() {
         return remarques;

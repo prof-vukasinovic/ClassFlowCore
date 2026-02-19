@@ -55,7 +55,6 @@ public class CsvService {
             .withQuoteChar('\"');
             String headerClasse = classRoomExport.getId() + ";\"" + classRoomExport.getNom() + "\"\n";
             String csvString = '\uFEFF' + headerClasse + csvMapper.writer(schema).writeValueAsString(eleves);
-            System.out.println(csvString);
             return csvString;
         } catch (Exception e) {
             e.printStackTrace();

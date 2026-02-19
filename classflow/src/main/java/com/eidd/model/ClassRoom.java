@@ -1,18 +1,25 @@
 package com.eidd.model;
 import java.util.List;
 
-import com.eidd.repositories.ClassRoomRespository;
-
+import jakarta.persistence.*;
+@Entity
 public class ClassRoom {
+    @OneToOne(cascade = CascadeType.ALL)
     private Groupe eleves;
+    @ElementCollection
     private List<Table> tables;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nom;
 
     
+    public ClassRoom() {
+        this.eleves = new Groupe();
+        this.tables = new java.util.ArrayList<>();
+    }
+
     public ClassRoom(String nom) {
-        this.id = ClassRoomRespository.getCounter();
-        ClassRoomRespository.incrementCounter();
         this.nom = nom;
         this.eleves = new Groupe();
         this.tables = new java.util.ArrayList<>();
@@ -21,8 +28,6 @@ public class ClassRoom {
     public ClassRoom(Groupe eleves, List<Table> tables) {
         this.eleves = eleves;
         this.tables = tables;
-        this.id = ClassRoomRespository.getCounter();
-        ClassRoomRespository.incrementCounter();
     }
 
     public ClassRoom(com.eidd.DTO.ClassRoomExport dto) {

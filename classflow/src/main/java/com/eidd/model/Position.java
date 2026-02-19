@@ -1,8 +1,14 @@
 package com.eidd.model;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Position {
     private int x;
     private int y;
+
+    public Position() {
+    }
 
     public Position(int x, int y) {
         this.x = x;

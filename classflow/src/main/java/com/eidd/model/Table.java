@@ -1,8 +1,16 @@
 package com.eidd.model;
 import com.eidd.DTO.TableExport;
 
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
+
+@Embeddable
 public class Table {
+    @Embedded
     private Position position;
+
+    public Table() {
+    }
 
     public Table(Position position) {
         this.position = position;

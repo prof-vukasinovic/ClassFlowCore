@@ -1,6 +1,9 @@
 package com.eidd.service;
+import org.springframework.stereotype.Service;
+
 import com.eidd.model.*;
 
+@Service
 public class EleveService{
 
     public Remarque ajouterRemarque(Eleve eleve, String intitule,Cours cours) {

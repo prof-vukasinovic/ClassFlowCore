@@ -1,18 +1,24 @@
 package com.eidd.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+
 public class Remarque {
+
     private String intitule;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Embedded
     private Cours cours;
+    public Remarque() {
+    }
+
     public Remarque(String intitule, Cours cours) {
         this.intitule = intitule;
         this.cours = cours;
-        try{
-            this.id=RemarqueToolKit.getNewRemarqueId(intitule);
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
     }
 
     public Remarque(com.eidd.DTO.RemarqueExport dto) {

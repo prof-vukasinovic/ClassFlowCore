@@ -3,6 +3,7 @@ package com.eidd.DTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UtilisateurExport {
+    private long id;
     @JsonProperty("nom")
     private String nom;
     @JsonProperty("prenom")
@@ -36,5 +37,11 @@ public class UtilisateurExport {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
     }
 }

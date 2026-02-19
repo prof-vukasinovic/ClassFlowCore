@@ -2,16 +2,24 @@ package com.eidd.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Eleve extends Utilisateur{
-    private long id;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Remarque> remarques;
+    @Embedded    
     private Table table;
 
 
 
-    public Eleve(long id, String nom, String prenom) {
+    public Eleve() {
+        super();
+        this.remarques = new ArrayList<>();
+    }
+
+    public Eleve(String nom, String prenom) {
         super(nom, prenom);
-        this.id = id;
         this.remarques = new ArrayList<>();
     }
 
@@ -19,7 +27,6 @@ public class Eleve extends Utilisateur{
         super((dto != null) ? new com.eidd.DTO.UtilisateurExport(dto.getNom(), dto.getPrenom()) : null);
         this.remarques = new ArrayList<>();
         if (dto != null) {
-            this.id = dto.getId();
             if (dto.getRemarques() != null) {
                 for (com.eidd.DTO.RemarqueExport re : dto.getRemarques()) {
                     this.remarques.add(new Remarque(re));
@@ -27,14 +34,6 @@ public class Eleve extends Utilisateur{
             }
             if (dto.getTable() != null) this.table = new Table(dto.getTable());
         }
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public List<Remarque> getRemarques() {
@@ -54,5 +53,11 @@ public class Eleve extends Utilisateur{
 
     public void setTable(Table table) {
         this.table = table;
+    }
+    public long getId() {
+        return super.getId();
+    }
+    public void setId(long id) {
+        super.setId(id);
     }
 }
