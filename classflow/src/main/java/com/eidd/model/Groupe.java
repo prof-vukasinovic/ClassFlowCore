@@ -3,11 +3,15 @@ package com.eidd.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Groupe {
-    @OneToMany(cascade = jakarta.persistence.CascadeType.ALL)
+    @OneToMany(cascade = jakarta.persistence.CascadeType.ALL, orphanRemoval = true)
     private List<Eleve> eleves;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
