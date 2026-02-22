@@ -16,6 +16,7 @@ public class Groupe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String nom;
 
     public Groupe() {
         this.eleves = new ArrayList<>();
@@ -44,6 +45,22 @@ public class Groupe {
 
     public void removeEleve(Eleve eleve) {
         this.eleves.remove(eleve);
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
 }
